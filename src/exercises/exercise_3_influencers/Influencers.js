@@ -38,6 +38,7 @@ const Influencers = () => {
   
   const [sortedData, setSortedData] = useState(null);
 
+  // possible improvement: after clicking sort button, search is no longer dynamic
   const handleClick = () => {
     setSortedData([...filteredData].sort((a, b) => {
       if (a.priority === "High" && (b.priority === "Medium" || b.priority === "Low")) {
