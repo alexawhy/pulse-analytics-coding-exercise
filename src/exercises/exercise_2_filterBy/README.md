@@ -14,7 +14,7 @@ matches the search term.
 
 ### Testing
 
-If you'd like to test your filterBy util as written, run `npm test uniqueBy`. If you'd like to test both uniqueBy and filterBy, run `npm test`.
+If you'd like to test your filterBy util as written, run `npm test filterBy`. If you'd like to test both uniqueBy and filterBy, run `npm test`.
 
 ### Example
 
