@@ -29,7 +29,7 @@ const Influencers = () => {
   const [search, setSearch] = useState('')
 
   const uniqueData = uniqueBy(data, 'member')
-  
+
   const [filteredData, setFilteredData] = useState(filterBy(uniqueData, search, [
     'indicationCategory',
     'affiliation',
@@ -44,19 +44,21 @@ const Influencers = () => {
     ]))}
   , [search])
 
+  const priority = (a, b) => {
+    if (a.priority === "High" && (b.priority === "Medium" || b.priority === "Low")) {
+      return -1;
+    } else if (a.priority === "Medium" && b.priority === "Low") {
+      return -1;
+    } else if (a.priority === "Low" && (b.priority === "High" || b.priority === "Medium")) {
+      return 1;
+    } else if (a.priority === "Medium" && b.priority === "High") {
+      return 1;
+    } 
+    return 0;
+  }
+
   const handleClick = () => {
-    setFilteredData([...filteredData].sort((a, b) => {
-      if (a.priority === "High" && (b.priority === "Medium" || b.priority === "Low")) {
-        return -1;
-      } else if (a.priority === "Medium" && b.priority === "Low") {
-        return -1;
-      } else if (a.priority === "Low" && (b.priority === "High" || b.priority === "Medium")) {
-        return 1;
-      } else if (a.priority === "Medium" && b.priority === "High") {
-        return 1;
-      } 
-      return 0;
-    }));
+    setFilteredData([...filteredData].sort(priority));
   }
 
   return (
