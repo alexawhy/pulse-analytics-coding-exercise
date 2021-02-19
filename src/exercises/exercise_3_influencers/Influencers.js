@@ -27,20 +27,25 @@ const Container = styled.div({
 
 const Influencers = () => {
   const [search, setSearch] = useState('')
+
+  const uniqueData = uniqueBy(data, 'member')
   
-  const uniqueData = uniqueBy(data, 'member') // use the uniqueBy util to unique our data by the "member" values
-  
-  const filteredData = filterBy(uniqueData, search, [
+  const [filteredData, setFilteredData] = useState(filterBy(uniqueData, search, [
     'indicationCategory',
     'affiliation',
     'affiliationPosition',
-  ]) // use the filterBy util to filter our data by the given search term
+  ]));
   
-  const [sortedData, setSortedData] = useState(null);
+  useEffect(() => {
+    setFilteredData(filterBy(uniqueData, search, [
+      'indicationCategory',
+      'affiliation',
+      'affiliationPosition',
+    ]))}
+  , [search])
 
-  // possible improvement: after clicking sort button, search is no longer dynamic
   const handleClick = () => {
-    setSortedData([...filteredData].sort((a, b) => {
+    setFilteredData([...filteredData].sort((a, b) => {
       if (a.priority === "High" && (b.priority === "Medium" || b.priority === "Low")) {
         return -1;
       } else if (a.priority === "Medium" && b.priority === "Low") {
@@ -59,7 +64,7 @@ const Influencers = () => {
       <h1>Pulse Analytics Take Home Assignment ✏️ </h1>
       <SearchBar setSearch={setSearch} search={search} />
       <button onClick={handleClick}>Sort by Priority</button>
-      <InfluencersTable data={sortedData || filteredData } />
+      <InfluencersTable data={filteredData} />
     </Container>
   )
 }
