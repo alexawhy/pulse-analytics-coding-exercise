@@ -15,9 +15,11 @@ const InfluencersTable = (props) => {
           <th>Priority</th>
         </tr>
       </thead>
-      {props.data.map(row => (
-        <InfluencersTableRow data={row}/>
-      ))}
+      <tbody>
+        {props.data.map(row => (
+          <InfluencersTableRow data={row} key={row.member}/>
+        ))}
+      </tbody>
     </table>
   )
 }

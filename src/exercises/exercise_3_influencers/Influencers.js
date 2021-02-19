@@ -27,21 +27,38 @@ const Container = styled.div({
 
 const Influencers = () => {
   const [search, setSearch] = useState('')
-
+  
   const uniqueData = uniqueBy(data, 'member') // use the uniqueBy util to unique our data by the "member" values
-
+  
   const filteredData = filterBy(uniqueData, search, [
     'indicationCategory',
     'affiliation',
     'affiliationPosition',
   ]) // use the filterBy util to filter our data by the given search term
+  
+  const [sortedData, setSortedData] = useState(null);
+
+  const handleClick = () => {
+    setSortedData([...filteredData].sort((a, b) => {
+      if (a.priority === "High" && (b.priority === "Medium" || b.priority === "Low")) {
+        return -1;
+      } else if (a.priority === "Medium" && b.priority === "Low") {
+        return -1;
+      } else if (a.priority === "Low" && (b.priority === "High" || b.priority === "Medium")) {
+        return 1;
+      } else if (a.priority === "Medium" && b.priority === "High") {
+        return 1;
+      } 
+      return 0;
+    }));
+  }
 
   return (
     <Container>
       <h1>Pulse Analytics Take Home Assignment ✏️ </h1>
       <SearchBar setSearch={setSearch} search={search} />
-      <button>Sort by Priority</button>
-      <InfluencersTable data={filteredData} />
+      <button onClick={handleClick}>Sort by Priority</button>
+      <InfluencersTable data={sortedData || filteredData } />
     </Container>
   )
 }
