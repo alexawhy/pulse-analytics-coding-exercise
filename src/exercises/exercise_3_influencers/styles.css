@@ -1,0 +1,41 @@
+h1, input, table, thead, tbody, tr, td {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+table {
+  margin-top: 1em;
+  border-spacing: 0em;
+  min-width: 100%;
+}
+
+thead {
+  background-color: #afc8d3;
+}
+
+tr:nth-child(2n) {
+  background-color: #d2dbdf;
+}
+
+th, td {
+  padding: 0.5em 1.2em;
+  min-width: 4em;
+  max-width: 35em;
+}
+
+button {
+  border: none;
+  background-color: #376074;
+  color: #ffffff;
+  font-size: 1em;
+  padding: 1em;
+  border-radius: 2em;
+}
+
+button:hover {
+  background-color: #1a3949;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
