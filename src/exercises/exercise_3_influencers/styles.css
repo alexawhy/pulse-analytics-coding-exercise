@@ -1,4 +1,4 @@
-h1, input, table, thead, tbody, tr, td {
+body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -27,7 +27,7 @@ button {
   background-color: #376074;
   color: #ffffff;
   font-size: 1em;
-  padding: 1em;
+  padding: 0.8em;
   border-radius: 2em;
 }
 
