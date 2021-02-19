@@ -8,6 +8,7 @@ import uniqueBy from '../exercise_1_uniqueBy'
 import filterBy from '../exercise_2_filterBy'
 
 import SearchBar from './SearchBar'
+import InfluencersTable from './InfluencersTable'
 
 const Container = styled.div({
   border: '1px solid black',
@@ -40,7 +41,7 @@ const Influencers = () => {
       <h1>Pulse Analytics Take Home Assignment ✏️ </h1>
       <SearchBar setSearch={setSearch} search={search} />
       <button>Sort by Priority</button>
-      {/* <YourComponentHere data={filteredData} /> */}
+      <InfluencersTable data={filteredData} />
     </Container>
   )
 }
